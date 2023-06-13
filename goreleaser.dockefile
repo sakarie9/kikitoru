@@ -2,7 +2,6 @@ FROM alpine
 COPY kikitoru /app/kikitoru
 
 ENV TZ Asia/Shanghai
-WORKDIR /app
 
 RUN apk add --no-cache gcompat tzdata
 

@@ -33,7 +33,6 @@ release:
 	fi
 	docker run \
 		--rm \
-		--privileged \
 		-e CGO_ENABLED=1 \
 		--env-file .release-env \
 		-v $(HOME)/.docker/config.json:/root/.docker/config.json \
