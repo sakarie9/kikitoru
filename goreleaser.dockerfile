@@ -1,8 +1,6 @@
 FROM alpine
 COPY kikitoru /app/kikitoru
 
-ENV TZ Asia/Shanghai
-
 RUN apk add --no-cache gcompat tzdata
 
 ENTRYPOINT ["/app/kikitoru"]

@@ -1,0 +1,29 @@
+services:
+  # 如果有现成的 Postgresql 实例，可以删除这一小节
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgresql_kikitoru
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+      PGTZ: Asia/Shanghai
+      POSTGRES_DB: kikitoru
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+
+  kikitoru:
+    image: ghcr.io/sakarie9/kikitoru:latest-amd64
+    container_name: kikitoru
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    volumes:
+      - ./data:/app/data
+    environment:
+      TZ: Asia/Shanghai
+      KIKITORU_DATABASE_URL: postgres://username:password@postgres/kikitoru?sslmode=disable
+      KIKITORU_DATA_DIR: /app/data
+    ports:
+      - 8080:8080
