@@ -8,7 +8,6 @@ import (
 	"kikitoru/internal"
 	"kikitoru/internal/router/api"
 	"kikitoru/internal/router/api/media"
-	"kikitoru/internal/router/api/unused"
 )
 
 func InitRouter() *gin.Engine {
@@ -17,8 +16,6 @@ func InitRouter() *gin.Engine {
 	if config.C.EnableGzip {
 		r.Use(gzip.Gzip(gzip.DefaultCompression))
 	}
-
-	server := unused.NewSocketServer()
 
 	r.Use(static.Serve("/", static.LocalFile("./dist", false)))
 	r.NoRoute(func(c *gin.Context) {
@@ -31,8 +28,6 @@ func InitRouter() *gin.Engine {
 	public.GET("/health", api.GetHealth)
 
 	/* ---------------------------  Private routes  --------------------------- */
-	r.GET("/socket.io/*any", gin.WrapH(server))
-	r.POST("/socket.io/*any", gin.WrapH(server))
 
 	v1 := r.Group("/api")
 	v1.Use(internal.JWT())
