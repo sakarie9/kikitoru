@@ -1,3 +1,3 @@
-FROM scratch:latest
+FROM scratch
 COPY kikitoru /
 ENTRYPOINT ["/kikitoru"]
