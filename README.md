@@ -18,3 +18,34 @@
 - 根据音声元数据对检索结果进行排序
 - 支持在 Web 端修改配置文件和扫描音声库
 - 支持为音声库添加多个根文件夹
+
+### 部署
+
+<details>
+<summary>
+<b>Docker Compose</b>
+</summary>
+
+1. 下载 [docker-compose.yaml](docker-compose.yaml) 到任意目录下
+2. 新建 `data` 文件夹
+3. 下载 [kikitoru-quasar/spa.zip](https://github.com/sakarie9/kikitoru-quasar/releases/latest/spa.zip)，解压到 `/data/dist` 下，保证存在 `/data/dist/index.html`
+
+    正确配置后目录结构应如下
+    
+    ```shell
+    kikitoru
+    ├── data
+    │   ├── config.json # 配置文件，运行后生成
+    │   ├── dist
+    │   │   ├── css
+    │   │   ├── fonts
+    │   │   ├── index.html
+    │   │   ├── js
+    │   │   └── statics
+    │   └── postgresql # 数据库文件夹
+    └── docker-compose.yaml
+    ```
+   
+4. 在 `docker-compose.yaml` 的同级目录下运行 `docker-compose up -d` 启动
+
+</details>
