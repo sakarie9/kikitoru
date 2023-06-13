@@ -4,6 +4,6 @@ COPY kikitoru /app/kikitoru
 ENV TZ Asia/Shanghai
 WORKDIR /app
 
-RUN apk --no-cache add gcompat tzdata
+RUN apk add --no-cache gcompat tzdata
 
 ENTRYPOINT ["/app/kikitoru"]

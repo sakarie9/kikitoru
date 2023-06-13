@@ -63,26 +63,6 @@ builds:
     ldflags:
       - -s -w -X config.version.VERSION=v{{.Tag}}
 
-  - id: kikitoru-linux-arm
-    main: ./
-    binary: kikitoru
-    goarch:
-      - arm
-    goos:
-      - linux
-    goarm:
-      - 7
-    env:
-      - BUILD_HOST=arm-linux-gnueabi
-      - CC=arm-linux-gnueabi-gcc
-      - CXX=arm-linux-gnueabi-g++
-      - CFLAGS=-I/usr/arm-linux-gnueabi/include:$CFLAGS
-      - CPPFLAGS=-I/usr/arm-linux-gnueabi/include:$CPPFLAGS
-      - LDFLAGS=-L/usr/arm-linux-gnueabi/lib:$LDFLAGS
-      - PKG_CONFIG_PATH=/usr/arm-linux-gnueabi/lib/pkgconfig:$PKG_CONFIG_PATH
-    ldflags:
-      - -s -w -X config.version.VERSION=v{{.Tag}}
-
   - id: kikitoru-windows-amd64
     main: ./
     binary: kikitoru
@@ -177,22 +157,6 @@ dockers:
     dockerfile: 'goreleaser.dockefile'
     build_flag_templates:
       - "--platform=linux/arm64"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
-
-  - id: kikitoru-linux-arm-docker
-    image_templates:
-      - "ghcr.io/sakarie9/kikitoru:{{.Tag}}-arm"
-      - "ghcr.io/sakarie9/kikitoru:latest-arm"
-    goarch: arm
-    goos: linux
-    goarm: 7
-    use: buildx
-    dockerfile: 'goreleaser.dockefile'
-    build_flag_templates:
-      - "--platform=linux/arm/v7"
       - "--label=org.opencontainers.image.created={{.Date}}"
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
