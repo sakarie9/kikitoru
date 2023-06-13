@@ -21,3 +21,7 @@
 go.work
 
 # https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+
+dist/
+
+.release-env

@@ -1,3 +1,6 @@
 package config
 
-const VERSION = "1.0.0"
+// AppVersion Inject by -ldflags
+var (
+	VERSION = "v1.0.0"
+)
