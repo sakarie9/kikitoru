@@ -1,4 +1,4 @@
-FROM alpine:latest
-COPY kikitoru /app/kikitoru
+FROM alpine
+COPY kikitoru /app/
 WORKDIR /app
-ENTRYPOINT ["kikitoru"]
+ENTRYPOINT ["/app/kikitoru"]
