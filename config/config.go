@@ -161,7 +161,7 @@ func getDefaultNewConfig() StructConfig {
 	var defaultConfig = StructConfig{
 		Version:        VERSION,
 		LogLevel:       "info",
-		Production:     false,
+		Production:     true,
 		DatabaseURL:    "postgres://username:password@localhost/kikitoru?sslmode=disable",
 		MaxParallelism: 16,
 		RootFolders: []struct {
