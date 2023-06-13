@@ -199,5 +199,5 @@ release:
     name: kikitoru
   prerelease: auto
   mode: replace
-  draft: true
+  draft: false
   replace_existing_draft: true
