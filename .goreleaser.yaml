@@ -35,7 +35,6 @@ builds:
     goamd64:
       - v3
     env:
-      - GIN_MODE=release
       - BUILD_HOST=x86_64-linux-gnu
       - CC=x86_64-linux-gnu-gcc
       - CXX=x86_64-linux-gnu-g++
