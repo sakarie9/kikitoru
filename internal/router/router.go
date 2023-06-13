@@ -59,6 +59,10 @@ func InitRouter() *gin.Engine {
 		v1.GET("/search/:keyword", api.GetSearch)
 		v1.GET("/logs", api.GetLogs)
 		v1.GET("/scan", api.StartScan)
+		v1.GET("/credentials/users", api.GetUsers)
+		v1.POST("/credentials/user", api.PostNewUser)
+		v1.DELETE("/credentials/user", api.DeleteUsers)
+		v1.PUT("/credentials/user", api.PutNewAdminPassword)
 
 		m := v1.Group("/media")
 		{
