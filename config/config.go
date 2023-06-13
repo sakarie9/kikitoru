@@ -5,6 +5,8 @@ import (
 	log "github.com/sirupsen/logrus"
 	"io"
 	"kikitoru/util"
+	"runtime"
+	"strings"
 
 	"os"
 	"path"
@@ -97,26 +99,30 @@ type StructConfig struct {
 }
 
 func InitConfig() {
-	ex, err := os.Executable()
-	if err != nil {
-		log.Error(err)
-	}
+	ab := getCurrentAbPath()
+	log.Debugf("Excutable path: %s", ab)
 
-	DataDir = path.Join(filepath.Dir(ex), SubFolder)
+	// Data dir override
+	DataDir = os.Getenv("KIKITORU_DATA_DIR")
+	if DataDir == "" {
+		DataDir = path.Join(filepath.Dir(ab), SubFolder)
+		log.Debugf("Data path: %s", DataDir)
 
-	// init data folder
-	isWorkDir, err := fileExists(DataDir)
-	if err != nil {
-		log.Error(err)
-	}
-	if !isWorkDir {
-		err := os.Mkdir(DataDir, 0755)
+		// init data folder
+		isWorkDir, err := fileExists(DataDir)
 		if err != nil {
 			log.Error(err)
+		}
+		if !isWorkDir {
+			err := os.Mkdir(DataDir, 0755)
+			if err != nil {
+				log.Error(err)
+			}
 		}
 	}
 
 	PathConfig = path.Join(DataDir, "config.json")
+	log.Debugf("Config path: %s", PathConfig)
 
 	// 如果配置文件存在
 	isExist, err := fileExists(PathConfig)
@@ -285,4 +291,37 @@ func ConvertFrontendMatchConfig(config StructConfig) StructConfig {
 	config.ForwardSeekTime = config.ForwardSeekTime * time.Second
 	config.ExpiresIn = config.ExpiresIn * time.Second
 	return config
+}
+
+// 最终方案-全兼容
+func getCurrentAbPath() string {
+	dir := getCurrentAbPathByExecutable()
+	tmpDir, _ := filepath.EvalSymlinks(os.TempDir())
+	if strings.Contains(dir, tmpDir) {
+		return getCurrentAbPathByCaller()
+	}
+	log.Debug(dir)
+	return dir
+}
+
+// 获取当前执行文件绝对路径
+func getCurrentAbPathByExecutable() string {
+	exePath, err := os.Executable()
+	if err != nil {
+		log.Fatal(err)
+	}
+	res, _ := filepath.EvalSymlinks(filepath.Dir(exePath))
+	log.Debug(res)
+	return res
+}
+
+// 获取当前执行文件绝对路径（go run）
+func getCurrentAbPathByCaller() string {
+	var abPath string
+	_, filename, _, ok := runtime.Caller(0)
+	if ok {
+		abPath = path.Dir(filename)
+	}
+	log.Debug(abPath)
+	return abPath
 }

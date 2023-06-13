@@ -6,6 +6,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"kikitoru/config"
 	"kikitoru/util"
+	"os"
 )
 
 var DB *sqlx.DB
@@ -16,8 +17,14 @@ const connStr = "postgres://postgres:114514@localhost/postgres?sslmode=disable"
 
 func InitDataBase() {
 
+	// 优先获取环境变量的数据库链接
+	dbURL := os.Getenv("KIKITORU_DATABASE_URL")
+	if dbURL == "" {
+		dbURL = config.C.DatabaseURL
+	}
+
 	var err error
-	DB, err = sqlx.Connect("postgres", config.C.DatabaseURL)
+	DB, err = sqlx.Connect("postgres", dbURL)
 	if err != nil {
 		log.Fatal("DB open error: ", err)
 	}
