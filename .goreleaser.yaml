@@ -144,7 +144,7 @@ dockers:
     goarch: amd64
     goos: linux
     use: buildx
-    dockerfile: Dockerfile
+    dockerfile: 'goreleaser.dockefile'
     build_flag_templates:
       - "--platform=linux/amd64"
       - "--label=org.opencontainers.image.created={{.Date}}"
@@ -160,7 +160,7 @@ dockers:
     goos: linux
     goamd64: v3
     use: buildx
-    dockerfile: Dockerfile
+    dockerfile: 'goreleaser.dockefile'
     build_flag_templates:
       - "--platform=linux/amd64/v3"
       - "--label=org.opencontainers.image.created={{.Date}}"
@@ -175,7 +175,7 @@ dockers:
     goarch: arm64
     goos: linux
     use: buildx
-    dockerfile: Dockerfile
+    dockerfile: 'goreleaser.dockefile'
     build_flag_templates:
       - "--platform=linux/arm64"
       - "--label=org.opencontainers.image.created={{.Date}}"
@@ -191,7 +191,7 @@ dockers:
     goos: linux
     goarm: 7
     use: buildx
-    dockerfile: Dockerfile
+    dockerfile: 'goreleaser.dockefile'
     build_flag_templates:
       - "--platform=linux/arm/7"
       - "--label=org.opencontainers.image.created={{.Date}}"
