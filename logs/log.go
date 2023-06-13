@@ -35,6 +35,9 @@ func InitLogger() {
 		logrus.SetLevel(logrus.WarnLevel)
 	case "error":
 		logrus.SetLevel(logrus.ErrorLevel)
+	case "":
+		logrus.SetLevel(logrus.DebugLevel)
+		logrus.SetReportCaller(true)
 	default:
 		logrus.SetLevel(logrus.InfoLevel)
 	}

@@ -13,6 +13,7 @@ import (
 func main() {
 	logs.InitLogger()
 	config.InitConfig()
+	logs.InitLogger()
 	database.InitDataBase()
 
 	if config.C.Production {

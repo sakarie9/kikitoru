@@ -16,6 +16,8 @@ import (
 // C 全局配置
 var C StructConfig
 var PathConfig string
+var DataDir string
+var SubFolder = "data"
 
 // 修改配置结构体时需要同时修改 StructPointerConfig 和 StructConfig
 type StructPointerConfig struct {
@@ -94,15 +96,27 @@ type StructConfig struct {
 	OffloadDownloadPath      string        `json:"offloadDownloadPath"`
 }
 
-var workingDir string
-
 func InitConfig() {
 	ex, err := os.Executable()
 	if err != nil {
 		log.Error(err)
 	}
-	workingDir = filepath.Dir(ex)
-	PathConfig = path.Join(workingDir, "config.json")
+
+	DataDir = path.Join(filepath.Dir(ex), SubFolder)
+
+	// init data folder
+	isWorkDir, err := fileExists(DataDir)
+	if err != nil {
+		log.Error(err)
+	}
+	if !isWorkDir {
+		err := os.Mkdir(DataDir, 0755)
+		if err != nil {
+			log.Error(err)
+		}
+	}
+
+	PathConfig = path.Join(DataDir, "config.json")
 
 	// 如果配置文件存在
 	isExist, err := fileExists(PathConfig)
@@ -160,7 +174,7 @@ func getDefaultNewConfig() StructConfig {
 
 	var defaultConfig = StructConfig{
 		Version:        VERSION,
-		LogLevel:       "info",
+		LogLevel:       "debug",
 		Production:     true,
 		DatabaseURL:    "postgres://username:password@localhost/kikitoru?sslmode=disable",
 		MaxParallelism: 16,
@@ -168,8 +182,8 @@ func getDefaultNewConfig() StructConfig {
 			Name string `json:"name"`
 			Path string `json:"path"`
 		}{},
-		CoverFolderDir:           path.Join(workingDir, "covers"),
-		VoiceWorkDefaultPath:     path.Join(workingDir, "VoiceWork"),
+		CoverFolderDir:           path.Join(DataDir, "covers"),
+		VoiceWorkDefaultPath:     path.Join(DataDir, "VoiceWork"),
 		MD5Secret:                md5S,
 		JWTSecret:                jwtS,
 		ExpiresIn:                2592000 * time.Second,
