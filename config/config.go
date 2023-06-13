@@ -105,7 +105,7 @@ func InitConfig() {
 	// Data dir override
 	DataDir = os.Getenv("KIKITORU_DATA_DIR")
 	if DataDir == "" {
-		DataDir = path.Join(filepath.Dir(ab), SubFolder)
+		DataDir = path.Join(ab, SubFolder)
 		log.Debugf("Data path: %s", DataDir)
 
 		// init data folder
@@ -300,7 +300,6 @@ func getCurrentAbPath() string {
 	if strings.Contains(dir, tmpDir) {
 		return getCurrentAbPathByCaller()
 	}
-	log.Debug(dir)
 	return dir
 }
 
@@ -311,7 +310,6 @@ func getCurrentAbPathByExecutable() string {
 		log.Fatal(err)
 	}
 	res, _ := filepath.EvalSymlinks(filepath.Dir(exePath))
-	log.Debug(res)
 	return res
 }
 
@@ -322,6 +320,5 @@ func getCurrentAbPathByCaller() string {
 	if ok {
 		abPath = path.Dir(filename)
 	}
-	log.Debug(abPath)
 	return abPath
 }
