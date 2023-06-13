@@ -4,7 +4,6 @@ import (
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 	"kikitoru/config"
 	"kikitoru/internal"
 	"kikitoru/internal/router/api"
@@ -19,8 +18,6 @@ func InitRouter() *gin.Engine {
 		r.Use(gzip.Gzip(gzip.DefaultCompression))
 	}
 
-	log.Error(config.DataDir)
-	log.Error(config.C.LogLevel)
 	r.Use(static.Serve("/", static.LocalFile(path.Join(config.DataDir, "dist"), false)))
 	r.NoRoute(func(c *gin.Context) {
 		c.File(path.Join(config.DataDir, "dist"))
