@@ -28,7 +28,7 @@
 
 1. 下载 [docker-compose.yaml](docker-compose.yaml) 到任意目录下
 2. 新建 `data` 文件夹
-3. 下载 [kikitoru-quasar/spa.zip](https://github.com/sakarie9/kikitoru-quasar/releases/latest/spa.zip)，解压到 `/data/dist` 下，保证存在 `/data/dist/index.html`
+3. 下载 [kikitoru-quasar/spa.zip](https://github.com/sakarie9/kikitoru-quasar/releases/latest/download/spa.zip)，解压到 `/data/dist` 下，保证存在 `/data/dist/index.html`
 
     正确配置后目录结构应如下
     
