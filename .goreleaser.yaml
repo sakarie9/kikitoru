@@ -187,7 +187,7 @@ dockers:
     image_templates:
       - "ghcr.io/sakarie9/kikitoru:{{.Tag}}-arm"
       - "ghcr.io/sakarie9/kikitoru:latest-arm"
-    goarch: amd64
+    goarch: arm
     goos: linux
     goarm: 7
     use: buildx
