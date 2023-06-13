@@ -1,3 +1,3 @@
 FROM scratch
-COPY kikitoru /
-ENTRYPOINT ["/kikitoru"]
+COPY kikitoru /app/kikitoru
+ENTRYPOINT ["/app/kikitoru"]
