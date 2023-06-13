@@ -48,4 +48,7 @@
    
 4. 在 `docker-compose.yaml` 的同级目录下运行 `docker-compose up -d` 启动
 
+> 在 `docker-compose.yaml` 下，`kikitoru-volumes` 冒号前的路径为本地音声目录实际路径，冒号后的路径为容器内的路径作为 `绝对路径` 填入前端仪表盘。
+> 或者将冒号后的路径填入 `config.json` 中
+
 </details>

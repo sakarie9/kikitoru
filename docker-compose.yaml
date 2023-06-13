@@ -21,6 +21,7 @@ services:
       - postgres
     volumes:
       - ./data:/app/data
+      - /some/voicework/dir:/app/data/VoiceWork # 替换成音声目录
     environment:
       TZ: Asia/Shanghai
       KIKITORU_DATABASE_URL: postgres://username:password@postgres/kikitoru?sslmode=disable
