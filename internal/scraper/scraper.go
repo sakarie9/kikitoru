@@ -84,6 +84,14 @@ func ScrapeStaticWorkMetadataFromDLsite(work *ScrapedWorkMetadata, rj string) {
 
 	c := colly.NewCollector()
 
+	// colly 代理设置
+	if config.C.HTTPProxyHost != "" && config.C.HTTPProxyPort != 0 {
+		err := c.SetProxy(fmt.Sprintf("http://%s:%d", config.C.HTTPProxyHost, config.C.HTTPProxyPort))
+		if err != nil {
+			log.Warn(err)
+		}
+	}
+
 	c.Limit(&colly.LimitRule{
 		RandomDelay: 500 * time.Millisecond, // 两次请求 随机延迟5s 内
 	})

@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	fmt.Printf("======== Kikitoru %s ========", config.VERSION)
+	fmt.Printf("======== Kikitoru %s ========\n", config.VERSION)
 	logs.InitLogger()
 	config.InitConfig()
 	logs.InitLogger()

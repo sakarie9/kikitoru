@@ -109,12 +109,33 @@ func DownloadFile(filePath string, fullURL string) error {
 	if err != nil {
 		return err
 	}
-	client := http.Client{
-		CheckRedirect: func(r *http.Request, via []*http.Request) error {
-			r.URL.Opaque = r.URL.Path
-			return nil
-		},
+
+	// 设置代理
+	var client http.Client
+	if config.C.HTTPProxyHost != "" && config.C.HTTPProxyPort != 0 {
+		proxyUrl := fmt.Sprintf("http://%s:%d", config.C.HTTPProxyHost, config.C.HTTPProxyPort)
+		proxy := func(_ *http.Request) (*url.URL, error) {
+			return url.Parse(proxyUrl)
+		}
+		httpTransport := &http.Transport{
+			Proxy: proxy,
+		}
+
+		client = http.Client{Transport: httpTransport,
+			CheckRedirect: func(r *http.Request, via []*http.Request) error {
+				r.URL.Opaque = r.URL.Path
+				return nil
+			},
+		}
+	} else { // 未设置代理
+		client = http.Client{
+			CheckRedirect: func(r *http.Request, via []*http.Request) error {
+				r.URL.Opaque = r.URL.Path
+				return nil
+			},
+		}
 	}
+
 	// Put content on file
 	resp, err := client.Get(fullURL)
 	if err != nil {
