@@ -10,10 +10,9 @@ require (
 	github.com/gocolly/colly v1.2.0
 	github.com/gofrs/uuid v4.4.0+incompatible
 	github.com/golang-jwt/jwt/v5 v5.0.0
-	github.com/googollee/go-socket.io v1.7.0
 	github.com/jmoiron/sqlx v1.3.5
 	github.com/lib/pq v1.10.9
-	github.com/panjf2000/ants/v2 v2.7.4
+	github.com/panjf2000/ants/v2 v2.7.5
 	github.com/sirupsen/logrus v1.9.3
 	github.com/tidwall/gjson v1.14.4
 	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1
@@ -34,9 +33,7 @@ require (
 	github.com/goccy/go-json v0.10.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/gomodule/redigo v1.8.4 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
-	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
