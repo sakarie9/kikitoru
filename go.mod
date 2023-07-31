@@ -14,7 +14,7 @@ require (
 	github.com/lib/pq v1.10.9
 	github.com/panjf2000/ants/v2 v2.8.1
 	github.com/sirupsen/logrus v1.9.3
-	github.com/tidwall/gjson v1.14.4
+	github.com/tidwall/gjson v1.15.0
 	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1
 )
 
