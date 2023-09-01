@@ -23,7 +23,7 @@ builds:
       - LDFLAGS=-L/usr/x86_64-linux-gnu/lib:$LDFLAGS
       - PKG_CONFIG_PATH=/usr/x86_64-linux-gnu/lib/pkgconfig:$PKG_CONFIG_PATH
     ldflags:
-      - -s -w -X config.version.VERSION=v{{.Tag}}
+      - -s -w -X kikitoru/config.VERSION=v{{.Tag}}
 
   - id: kikitoru-linux-amd64-v3
     main: ./
@@ -43,7 +43,7 @@ builds:
       - LDFLAGS=-L/usr/x86_64-linux-gnu/lib:$LDFLAGS
       - PKG_CONFIG_PATH=/usr/x86_64-linux-gnu/lib/pkgconfig:$PKG_CONFIG_PATH
     ldflags:
-      - -s -w -X config.version.VERSION=v{{.Tag}}
+      - -s -w -X kikitoru/config.VERSION=v{{.Tag}}
 
   - id: kikitoru-linux-arm64
     main: ./
@@ -61,7 +61,7 @@ builds:
       - LDFLAGS=-L/usr/aarch64-linux-gnu/lib:$LDFLAGS
       - PKG_CONFIG_PATH=/usr/aarch64-linux-gnu/lib/pkgconfig:$PKG_CONFIG_PATH
     ldflags:
-      - -s -w -X config.version.VERSION=v{{.Tag}}
+      - -s -w -X kikitoru/config.VERSION=v{{.Tag}}
 
   - id: kikitoru-windows-amd64
     main: ./
@@ -74,7 +74,7 @@ builds:
       - CC=x86_64-w64-mingw32-gcc
       - CXX=x86_64-w64-mingw32-g++
     ldflags:
-      - -s -w -X config.version.VERSION=v{{.Tag}}
+      - -s -w -X kikitoru/config.VERSION=v{{.Tag}}
 
   - id: kikitoru-windows-arm64
     main: ./
@@ -87,7 +87,7 @@ builds:
       - CC=/llvm-mingw/bin/aarch64-w64-mingw32-gcc
       - CXX=/llvm-mingw/bin/aarch64-w64-mingw32-g++
     ldflags:
-      - -s -w -X config.version.VERSION=v{{.Tag}}
+      - -s -w -X kikitoru/config.VERSION=v{{.Tag}}
 
   - id: kikitoru-darwin-amd64
     main: ./
@@ -100,7 +100,7 @@ builds:
       - CC=o64-clang
       - CXX=o64-clang++
     ldflags:
-      - -s -w -X config.version.VERSION=v{{.Tag}}
+      - -s -w -X kikitoru/config.VERSION=v{{.Tag}}
 
   - id: kikitoru-darwin-arm64
     main: ./
@@ -113,7 +113,7 @@ builds:
       - CC=oa64-clang
       - CXX=oa64-clang++
     ldflags:
-      - -s -w -X config.version.VERSION=v{{.Tag}}
+      - -s -w -X kikitoru/config.VERSION=v{{.Tag}}
 
 dockers:
   - id: kikitoru-linux-amd64-docker
