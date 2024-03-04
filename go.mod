@@ -3,7 +3,7 @@ module kikitoru
 go 1.20
 
 require (
-	github.com/PuerkitoBio/goquery v1.8.1
+	github.com/PuerkitoBio/goquery v1.9.1
 	github.com/gin-contrib/gzip v0.0.6
 	github.com/gin-contrib/static v1.1.0
 	github.com/gin-gonic/gin v1.9.1
@@ -19,7 +19,7 @@ require (
 )
 
 require (
-	github.com/andybalholm/cascadia v1.3.1 // indirect
+	github.com/andybalholm/cascadia v1.3.2 // indirect
 	github.com/antchfx/htmlquery v1.3.0 // indirect
 	github.com/antchfx/xmlquery v1.3.15 // indirect
 	github.com/antchfx/xpath v1.2.3 // indirect
