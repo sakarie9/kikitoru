@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/PuerkitoBio/goquery v1.9.1
 	github.com/gin-contrib/gzip v1.0.0
-	github.com/gin-contrib/static v1.1.0
+	github.com/gin-contrib/static v1.1.1
 	github.com/gin-gonic/gin v1.9.1
 	github.com/gocolly/colly v1.2.0
 	github.com/gofrs/uuid v4.4.0+incompatible
