@@ -21,10 +21,10 @@ jobs:
           password: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: "^1.20.5"
 
@@ -38,7 +38,7 @@ jobs:
           make snapshot-dry-run
 
       - name: Upload assets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: kikitoru
           path: dist/*
@@ -57,12 +57,12 @@ jobs:
           - darwin_amd64
           - darwin_arm64
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: kikitoru
 
       - name: Upload assets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: kikitoru_${{ matrix.release-version }}
           path: ./*${{ matrix.release-version }}*/kikitoru*
