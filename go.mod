@@ -2,7 +2,7 @@ module kikitoru
 
 go 1.24
 
-toolchain go1.24.3
+toolchain go1.24.2
 
 require (
 	github.com/PuerkitoBio/goquery v1.10.3
