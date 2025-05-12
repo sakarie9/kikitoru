@@ -1,5 +1,5 @@
 PACKAGE_NAME          := kikitoru
-GOLANG_CROSS_VERSION  ?= v1.20.5
+GOLANG_CROSS_VERSION  ?= v1.24.3
 LDFLAGS               := -s -w
 
 SYSROOT_DIR     ?= sysroots
