@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
@@ -26,7 +26,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: '^1.20.5'
+          go-version: "^1.20.5"
 
       - name: setup release environment
         run: |-
@@ -49,13 +49,13 @@ jobs:
     strategy:
       matrix:
         release-version:
-        - linux_amd64_v1
-        - linux_amd64_v3
-        - linux_arm64
-        - windows_amd64
-        - windows_arm64
-        - darwin_amd64
-        - darwin_arm64
+          - linux_amd64_v1
+          - linux_amd64_v3
+          - linux_arm64
+          - windows_amd64
+          - windows_arm64
+          - darwin_amd64
+          - darwin_arm64
     steps:
       - uses: actions/download-artifact@v3
         with:
