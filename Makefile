@@ -23,7 +23,7 @@ release-dry-run:
 		-v `pwd`/sysroot:/sysroot \
 		-w /go/src/$(PACKAGE_NAME) \
 		ghcr.io/goreleaser/goreleaser-cross:${GOLANG_CROSS_VERSION} \
-		--clean --skip-validate --skip-publish
+		--clean --skip=validate --skip=publish
 
 .PHONY: release
 release:
@@ -53,7 +53,7 @@ snapshot-dry-run:
 		-v `pwd`/sysroot:/sysroot \
 		-w /go/src/$(PACKAGE_NAME) \
 		ghcr.io/goreleaser/goreleaser-cross:${GOLANG_CROSS_VERSION} \
-		--clean --skip-validate --skip-publish --snapshot
+		--clean --skip=validate --skip=publish --snapshot
 
 .PHONY: snapshot
 snapshot:
